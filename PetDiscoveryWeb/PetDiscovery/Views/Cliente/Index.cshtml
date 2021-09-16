@@ -1,0 +1,47 @@
+﻿@model IEnumerable<PetDiscovery.Models.Cliente>
+
+@{
+    ViewData["Title"] = "Clientes Cadastrados";
+}
+
+<h1>Clientes Cadastrados</h1>
+
+<p>
+    <a asp-action="Create" class="btn btn-outline-success btn-sm">Novo Cliente</a>
+</p>
+<table class="table table-hover">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.cliente_Id)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.cliente_nome)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.cliente_email)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.cliente_Id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.cliente_nome)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.cliente_email)
+            </td>
+            <td>
+                <a asp-controller="Cliente" asp-action="Update" asp-route-clienteId="@item.cliente_Id" class="btn btn-outline-info btn-sm">Atualizar</a> &emsp;
+                <a asp-controller="Cliente" asp-action="Delete" asp-route-clienteId="@item.cliente_Id" class="btn btn-outline-danger btn-sm">Excluir</a> &emsp;
+                <a asp-controller="Endereco" asp-action="Create" asp-route-clienteId="@item.cliente_Id" class="btn btn-outline-info btn-lg">Adicionar Endereco</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
